@@ -9,7 +9,3 @@ args:
         value_name: FILE
         help: Sets a custom config file
         takes_value: true
-    - verbose:
-        short: v
-        multiple: true
-        help: Sets the level of verbosity
