@@ -1,6 +1,17 @@
-#[derive(Debug)]
-pub struct Params<'a> {
-    pub pitch: &'a str,
+use serde::{Serialize, Deserialize};
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Params {
+    #[serde(default = "default_pitch")]
+    pub pitch: String,
+    #[serde(default = "default_user_type")]
+    pub user_type: String,
+    #[serde(default = "default_bday_day")]
+    pub bday_day: i32,
+    #[serde(default = "default_bday_month")]
+    pub bday_month: i32,
+    #[serde(default = "default_bday_year")]
+    pub bday_year: i32,
     pub day: i32,
     pub month: i32,
     pub year: i32,
@@ -8,28 +19,30 @@ pub struct Params<'a> {
     pub start_minute: i32,
     pub end_hour: i32,
     pub end_minute: i32,
-    pub user_type: &'a str,
-    pub username: &'a str,
-    pub email: &'a str,
-    pub phone: &'a str,
-    pub bday_day: i32,
-    pub bday_month: i32,
-    pub bday_year: i32,
-    pub fiscal_number: &'a str,
-    pub address: &'a str,
-    pub postcode: &'a str,
-    pub location: &'a str,
+    pub username: String,
+    pub email: String,
+    pub phone: String,
+    pub fiscal_number: String,
+    pub address: String,
+    pub postcode: String,
+    pub location: String,
 }
 
-impl<'a> Params<'a> {
+fn default_pitch() -> String { "123".to_string() }
+fn default_user_type() -> String { "outros".to_string() }
+fn default_bday_day() -> i32 { 1 }
+fn default_bday_month() -> i32 { 1 }
+fn default_bday_year() -> i32 { 1990 }
+
+impl Params {
     pub fn new(
-        username: &'a str,
-        email: &'a str,
-        fiscal_number: &'a str,
-        phone: &'a str,
-        address: &'a str,
-        postcode: &'a str,
-        location: &'a str,
+        username: String,
+        email: String,
+        fiscal_number: String,
+        phone: String,
+        address: String,
+        postcode: String,
+        location: String,
         day: i32,
         month: i32,
         year: i32,
@@ -53,8 +66,8 @@ impl<'a> Params<'a> {
             start_minute,
             end_hour,
             end_minute,
-            pitch: "123",
-            user_type: "outros",
+            pitch: "123".to_string(),
+            user_type: "outros".to_string(),
             bday_day: 1,
             bday_month: 1,
             bday_year: 1990,

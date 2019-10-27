@@ -104,8 +104,8 @@ impl<'a> Request<'a> {
 impl<'a> Submission<'a> {
     fn new(params: &'a Params) -> Self {
         Self {
-            instalacoes: params.pitch,
-            utente: params.user_type,
+            instalacoes: &params.pitch,
+            utente: &params.user_type,
             dados_da_reserva: Booking::new(params),
             responsavel_pela_reserva: User::new(params),
             dados_para_faturacao: FiscalInfo::new(params),
@@ -120,7 +120,11 @@ impl<'a> Booking<'a> {
             numero_de_participantes: "1P",
             continuidade: "unica",
             observacoes: "",
-            data_da_reserva: Day::new(params.day, params.month, params.year),
+            data_da_reserva: Day::new(
+                params.day,
+                params.month,
+                params.year
+                ),
             hora: Hours::new(params),
         }
     }
@@ -135,9 +139,9 @@ impl<'a> User<'a> {
             );
 
         Self {
-            nome_responsavel: params.username,
-            e_mail_responsavel: params.email,
-            telefone_responsavel: params.phone,
+            nome_responsavel: &params.username,
+            e_mail_responsavel: &params.email,
+            telefone_responsavel: &params.phone,
             data_de_nascimento: bday,
         }
     }
@@ -149,15 +153,15 @@ impl<'a> FiscalInfo<'a> {
 
         Self {
             usar_o_nome_do_responsavel: "1",
-            nome_completo: params.username,
+            nome_completo: &params.username,
             nr_utente: "",
-            no_de_contribuinte: params.fiscal_number,
-            morada: params.address,
+            no_de_contribuinte: &params.fiscal_number,
+            morada: &params.address,
             codigo_postal: postcode,
             user_o_telefone_do_responsavel: "1",
-            telefone: params.phone,
+            telefone: &params.phone,
             usar_o_e_mail_do_responsavel: "1",
-            e_mail: params.email,
+            e_mail: &params.email,
         }
     }
 }
@@ -165,8 +169,8 @@ impl<'a> FiscalInfo<'a> {
 impl<'a> Postcode<'a> {
     fn new(params: &'a Params) -> Self {
         Self {
-            localidade: params.location,
-            codigo_postal: params.postcode,
+            localidade: &params.location,
+            codigo_postal: &params.postcode,
         }
     }
 }

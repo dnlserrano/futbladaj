@@ -9,3 +9,4 @@ clap = { git = "https://github.com/clap-rs/clap", branch = "master", features = 
 ureq = { version = "*" }
 serde = { version = "*", features = ["derive"] }
 serde_qs = "*"
+serde_yaml = "*"
