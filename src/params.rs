@@ -22,27 +22,42 @@ pub struct Params<'a> {
 }
 
 impl<'a> Params<'a> {
-    pub fn new(username: &'a str) -> Self {
+    pub fn new(
+        username: &'a str,
+        email: &'a str,
+        fiscal_number: &'a str,
+        phone: &'a str,
+        address: &'a str,
+        postcode: &'a str,
+        location: &'a str,
+        day: i32,
+        month: i32,
+        year: i32,
+        start_hour: i32,
+        start_minute: i32,
+        end_hour: i32,
+        end_minute: i32,
+    ) -> Self {
         Params {
+            username,
+            email,
+            fiscal_number,
+            phone,
+            address,
+            postcode,
+            location,
+            day,
+            month,
+            year,
+            start_hour,
+            start_minute,
+            end_hour,
+            end_minute,
             pitch: "123",
-            day: 1,
-            month: 1,
-            year: 2020,
-            start_hour: 22,
-            start_minute: 00,
-            end_hour: 22,
-            end_minute: 30,
             user_type: "outros",
-            username: username,
-            email: "email@email.com",
-            phone: "91 123 12 12",
             bday_day: 1,
             bday_month: 1,
             bday_year: 1990,
-            fiscal_number: "123123123",
-            address: "Rua do Exemplo",
-            postcode: "1234-123",
-            location: "Lisboa",
         }
     }
 }

@@ -1,11 +1,7 @@
 #[macro_use]
-extern crate ureq;
-
-#[macro_use]
 extern crate clap;
 use clap::App;
 
-mod cli;
 mod client;
 mod string;
 mod params;
@@ -17,10 +13,39 @@ fn main() {
     let yaml = load_yaml!("../config/cli.yml");
     let matches = App::from(yaml).get_matches();
 
-    if let Some(config_file) = matches.value_of("config") {
-        config::run(config_file);
-    } else {
-        let params = Params::new("Daniel Serrano");
-        cli::run(&params);
-    }
+    let params =
+        if let Some(config_file) = matches.value_of("config") {
+            println!("load {} to get params", config_file);
+            Params::new(
+                "Error",
+                "email@email.com",
+                "123123123",
+                "91 123 12 12",
+                "Address",
+                "1234-123",
+                "Lisbon",
+                1,
+                1,
+                2020,
+                21, 00,
+                22, 00,
+                )
+        } else {
+            Params::new(
+                "Error",
+                "email@email.com",
+                "123123123",
+                "91 123 12 12",
+                "Address",
+                "1234-123",
+                "Lisbon",
+                1,
+                1,
+                2020,
+                21, 00,
+                22, 00,
+                )
+        };
+
+        client::run(&params);
 }

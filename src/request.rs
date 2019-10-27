@@ -12,8 +12,11 @@ pub struct Request<'a> {
 #[derive(Serialize, Deserialize, Debug)]
 struct Details<'a> {
     sid: &'a str,
+    #[serde(with = "crate::string")]
     page_num: i32,
+    #[serde(with = "crate::string")]
     page_count: i32,
+    #[serde(with = "crate::string")]
     finished: i32,
 }
 
@@ -38,8 +41,11 @@ struct Booking<'a> {
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Day {
+    #[serde(with = "crate::string")]
     day: i32,
+    #[serde(with = "crate::string")]
     month: i32,
+    #[serde(with = "crate::string")]
     year: i32
 }
 
@@ -51,7 +57,9 @@ struct Hours {
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Hour {
+    #[serde(with = "crate::string")]
     hour: i32,
+    #[serde(with = "crate::string")]
     minute: i32,
 }
 
@@ -87,7 +95,7 @@ impl<'a> Request<'a> {
     pub fn new(params: &'a Params) -> Self {
         Self {
             submitted: Submission::new(params),
-            details: Details::new(params),
+            details: Details::new(),
             op: "Enviar",
         }
     }
@@ -189,7 +197,7 @@ impl Day {
 }
 
 impl<'a> Details<'a> {
-    fn new(params: &'a Params) -> Self {
+    fn new() -> Self {
         Self {
             sid: "",
             page_num: 1,

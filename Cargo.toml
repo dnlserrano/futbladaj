@@ -6,6 +6,6 @@ edition = "2018"
 
 [dependencies]
 clap = { git = "https://github.com/clap-rs/clap", branch = "master", features = ["yaml"] }
-ureq = { version = "*", features = ["json"] }
+ureq = { version = "*" }
 serde = { version = "*", features = ["derive"] }
-serde_json = "*"
+serde_qs = "*"
