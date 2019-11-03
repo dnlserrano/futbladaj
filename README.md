@@ -25,10 +25,25 @@ FLAGS:
     -V, --version    Prints version information
 
 OPTIONS:
-    -c, --config <FILE>    Sets a custom config file
+    -a, --address <address>                Sets the booker's address (e.g., "Old Street")
+    -c, --config <FILE>                    Sets a custom config file (e.g., "myconf.yml")
+    -d, --day <day>                        Sets the day (1-31) for the booking (e.g., "1")
+    -e, --email <email>                    Sets the booker's email (e.g., "email@email.com")
+    -E, --end-hour <end_hour>              Sets the end hour (0-24) for the booking (e.g., "23")
+    -f, --fiscal-number <fiscal_number>    Sets the booker's fiscal number (e.g., "123123123")
+    -m, --month <month>                    Sets the month (1-12) for the booking (e.g., "3")
+    -p, --phone <phone>                    Sets the booker's phone number (e.g., "+351 91 123 12 12")
+    -C, --postcode <postcode>              Sets the booker's postcode (e.g., "1234-123")
+    -S, --start-hour <start_hour>          Sets the start hour (0-24) for the booking (e.g., "22")
+    -u, --username <username>              Sets the booker's username (e.g., "John Doe")
+    -y, --year <year>                      Sets the year for the booking (e.g., "2020")
 ```
 
-We currently provide one way to book a pitch, via a configuration file written in YAML. E.g., `config/booking.yml`:
+We currently provide two ways to book a pitch. Either via a configuration file written in YAML or via CLI options.
+
+### Use via YAML configuration file
+
+You can use a given configuration file as follows. E.g., `config/booking.yml`:
 
 ```yaml
 ---
@@ -36,23 +51,29 @@ day: 1
 month: 1
 year: 2020
 start_hour: 21
-start_minute: 00
 end_hour: 22
-end_minute: 00
 username: "Jorge Jesus"
 email: "email@email.com"
 fiscal_number: "123 123 123"
 phone: "91 123 12 12"
 address: "Rua do Ouro"
 postcode: "1234-123"
-location: "Lisbon"
 ```
 
-You can use a given configuration file as follows:
-
-```
+```sh
 futbladaj -c config/booking.yml
-[SUCCESS] form submission successful
+
+# [SUCCESS] form submission successful
+```
+
+### Use via CLI options
+
+Alternatively, you can also run it by specifying the various available configuration options:
+
+```sh
+futbladaj -a "Old Street" -d 1 -m 1 -y 2020 -e email@email.com -S 22 -E 23 -f 123123123 -C 1234-123 -u "John Doe" -p 911231212
+
+# [SUCCESS] form submission successful
 ```
 
 ## Contributing
