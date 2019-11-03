@@ -31,13 +31,26 @@ pub struct Params {
     pub location: String,
 }
 
-fn default_pitch() -> String { "123".to_string() }
+fn default_pitch() -> String { "768".to_string() }
 fn default_user_type() -> String { "outros".to_string() }
 fn default_bday_day() -> i32 { 1 }
 fn default_bday_month() -> i32 { 1 }
 fn default_bday_year() -> i32 { 1990 }
 fn default_minute() -> i32 { 0 }
 fn default_location() -> String { "Lisboa".to_string() }
+
+pub fn pitch_name_to_code(pitch_name: &str) -> String {
+    match pitch_name {
+        "ajuda" => "759".to_string(),
+        "grandes" => "760".to_string(),
+        "honra" => "761".to_string(),
+        "pav1" => "762".to_string(),
+        "pav2" => "763".to_string(),
+        "pav3" => "763".to_string(),
+        "poli" => default_pitch(),
+        _ => default_pitch(),
+    }
+}
 
 impl Params {
     pub fn new(
@@ -47,6 +60,7 @@ impl Params {
         phone: String,
         address: String,
         postcode: String,
+        pitch: String,
         day: i32,
         month: i32,
         year: i32,
@@ -67,7 +81,7 @@ impl Params {
             end_hour,
             start_minute: default_minute(),
             end_minute: default_minute(),
-            pitch: default_pitch(),
+            pitch: pitch_name_to_code(&pitch),
             user_type: default_user_type(),
             bday_day: default_bday_day(),
             bday_month: default_bday_month(),

@@ -10,6 +10,7 @@ args:
         help: Sets a custom config file (e.g., "myconf.yml")
         takes_value: true
         required_unless_all:
+          - pitch
           - day
           - month
           - year
@@ -21,6 +22,19 @@ args:
           - fiscal_number
           - address
           - postcode
+    - pitch:
+        short: p
+        long: pitch
+        help: Sets the pitch for the booking (e.g., "pav1")
+        takes_value: true
+        possible_values:
+          - ajuda
+          - grandes
+          - honra
+          - pav1
+          - pav2
+          - pav3
+          - poli
     - day:
         short: d
         long: day
@@ -57,7 +71,7 @@ args:
         help: Sets the booker's email (e.g., "email@email.com")
         takes_value: true
     - phone:
-        short: p
+        short: P
         long: phone
         help: Sets the booker's phone number (e.g., "+351 91 123 12 12")
         takes_value: true

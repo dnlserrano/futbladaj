@@ -18,7 +18,7 @@ fn main() {
     let yaml = load_yaml!("../config/cli.yml");
     let matches = App::from(yaml).get_matches();
 
-    let params =
+    let mut params =
         if let Some(config_file) = matches.value_of("config") {
             let mut file = File::open(config_file).unwrap();
             let mut yaml = String::new();
@@ -28,6 +28,8 @@ fn main() {
         } else {
             argmatches_to_params(&matches)
         };
+
+    params.pitch = params::pitch_name_to_code(&params.pitch);
 
     client::run(&params);
 }
@@ -44,10 +46,11 @@ fn argmatches_to_params(matches: &ArgMatches) -> Params {
     let year = to_i32(matches, "year");
     let start_hour = to_i32(matches, "start_hour");
     let end_hour = to_i32(matches, "end_hour");
+    let pitch = to_string(matches, "pitch");
 
     Params::new(
         username, email, fiscal_number, phone, address, postcode,
-        day, month, year, start_hour, end_hour
+        pitch, day, month, year, start_hour, end_hour
         )
 }
 
