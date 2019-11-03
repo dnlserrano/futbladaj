@@ -3,13 +3,10 @@ day: 1
 month: 1
 year: 2020
 start_hour: 21
-start_minute: 00
 end_hour: 22
-end_minute: 00
 username: "Jorge Jesus"
 email: "email@email.com"
 fiscal_number: "123 123 123"
 phone: "91 123 12 12"
 address: "Rua do Ouro"
 postcode: "1234-123"
-location: "Lisbon"

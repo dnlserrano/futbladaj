@@ -7,5 +7,72 @@ args:
         short: c
         long: config
         value_name: FILE
-        help: Sets a custom config file
+        help: Sets a custom config file (e.g., "myconf.yml")
+        takes_value: true
+        required_unless_all:
+          - day
+          - month
+          - year
+          - start_hour
+          - end_hour
+          - username
+          - email
+          - phone
+          - fiscal_number
+          - address
+          - postcode
+    - day:
+        short: d
+        long: day
+        help: Sets the day (1-31) for the booking (e.g., "1")
+        takes_value: true
+    - month:
+        short: m
+        long: month
+        help: Sets the month (1-12) for the booking (e.g., "3")
+        takes_value: true
+    - year:
+        short: y
+        long: year
+        help: Sets the year for the booking (e.g., "2020")
+        takes_value: true
+    - start_hour:
+        short: S
+        long: start-hour
+        help: Sets the start hour (0-24) for the booking (e.g., "22")
+        takes_value: true
+    - end_hour:
+        short: E
+        long: end-hour
+        help: Sets the end hour (0-24) for the booking (e.g., "23")
+        takes_value: true
+    - username:
+        short: u
+        long: username
+        help: Sets the booker's username (e.g., "John Doe")
+        takes_value: true
+    - email:
+        short: e
+        long: email
+        help: Sets the booker's email (e.g., "email@email.com")
+        takes_value: true
+    - phone:
+        short: p
+        long: phone
+        help: Sets the booker's phone number (e.g., "+351 91 123 12 12")
+        takes_value: true
+    - fiscal_number:
+        short: f
+        long: fiscal-number
+        help: Sets the booker's fiscal number (e.g., "123123123")
+        takes_value: true
+    - address:
+        short: a
+        long: address
+        help: Sets the booker's address (e.g., "Old Street")
+        takes_value: true
+    - postcode:
+        short: C
+        long: postcode
+        help: Sets the booker's postcode (e.g., "1234-123")
         takes_value: true

@@ -16,8 +16,10 @@ pub struct Params {
     pub month: i32,
     pub year: i32,
     pub start_hour: i32,
+    #[serde(default = "default_minute")]
     pub start_minute: i32,
     pub end_hour: i32,
+    #[serde(default = "default_minute")]
     pub end_minute: i32,
     pub username: String,
     pub email: String,
@@ -25,6 +27,7 @@ pub struct Params {
     pub fiscal_number: String,
     pub address: String,
     pub postcode: String,
+    #[serde(default = "default_location")]
     pub location: String,
 }
 
@@ -33,6 +36,8 @@ fn default_user_type() -> String { "outros".to_string() }
 fn default_bday_day() -> i32 { 1 }
 fn default_bday_month() -> i32 { 1 }
 fn default_bday_year() -> i32 { 1990 }
+fn default_minute() -> i32 { 0 }
+fn default_location() -> String { "Lisboa".to_string() }
 
 impl Params {
     pub fn new(
@@ -42,15 +47,12 @@ impl Params {
         phone: String,
         address: String,
         postcode: String,
-        location: String,
         day: i32,
         month: i32,
         year: i32,
         start_hour: i32,
-        start_minute: i32,
         end_hour: i32,
-        end_minute: i32,
-    ) -> Self {
+        ) -> Self {
         Params {
             username,
             email,
@@ -58,19 +60,19 @@ impl Params {
             phone,
             address,
             postcode,
-            location,
             day,
             month,
             year,
             start_hour,
-            start_minute,
             end_hour,
-            end_minute,
-            pitch: "123".to_string(),
-            user_type: "outros".to_string(),
-            bday_day: 1,
-            bday_month: 1,
-            bday_year: 1990,
+            start_minute: default_minute(),
+            end_minute: default_minute(),
+            pitch: default_pitch(),
+            user_type: default_user_type(),
+            bday_day: default_bday_day(),
+            bday_month: default_bday_month(),
+            bday_year: default_bday_year(),
+            location: default_location(),
         }
     }
 }
