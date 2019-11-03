@@ -1,13 +1,13 @@
 ---
-pitch: "pav1"
+pitch: pav1
 day: 1
 month: 1
 year: 2020
 start_hour: 21
 end_hour: 22
-username: "Jorge Jesus"
-email: "email@email.com"
-fiscal_number: "123 123 123"
-phone: "91 123 12 12"
-address: "Rua do Ouro"
-postcode: "1234-123"
+username: Jorge Jesus
+email: email@email.com
+fiscal_number: 123 123 123
+phone: 91 123 12 12
+address: Rua do Ouro
+postcode: 1234-123
