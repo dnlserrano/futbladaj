@@ -3,15 +3,15 @@ pub use serde::{Serialize, Deserialize};
 use crate::params::Params;
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct Request<'a> {
-    submitted: Submission<'a>,
-    details: Details<'a>,
-    op: &'a str,
+pub struct Request {
+    submitted: Submission,
+    details: Details,
+    op: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-struct Details<'a> {
-    sid: &'a str,
+struct Details {
+    sid: String,
     #[serde(with = "crate::string")]
     page_num: i32,
     #[serde(with = "crate::string")]
@@ -21,20 +21,20 @@ struct Details<'a> {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-struct Submission<'a> {
-    instalacoes: &'a str,
-    utente: &'a str,
-    dados_da_reserva: Booking<'a>,
-    responsavel_pela_reserva: User<'a>,
-    dados_para_faturacao: FiscalInfo<'a>,
+struct Submission {
+    instalacoes: String,
+    utente: String,
+    dados_da_reserva: Booking,
+    responsavel_pela_reserva: User,
+    dados_para_faturacao: FiscalInfo,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-struct Booking<'a> {
-    modalidade: &'a str,
-    numero_de_participantes: &'a str,
-    continuidade: &'a str,
-    observacoes: &'a str,
+struct Booking {
+    modalidade: String,
+    numero_de_participantes: String,
+    continuidade: String,
+    observacoes: String,
     data_da_reserva: Day,
     hora: Hours,
 }
@@ -64,48 +64,48 @@ struct Hour {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-struct User<'a> {
-    nome_responsavel: &'a str,
-    e_mail_responsavel: &'a str,
-    telefone_responsavel: &'a str,
+struct User {
+    nome_responsavel: String,
+    e_mail_responsavel: String,
+    telefone_responsavel: String,
     data_de_nascimento: Day,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-struct FiscalInfo<'a> {
-    usar_o_nome_do_responsavel: &'a str,
-    nome_completo: &'a str,
-    nr_utente: &'a str,
-    no_de_contribuinte: &'a str,
-    morada: &'a str,
-    codigo_postal: Postcode<'a>,
-    user_o_telefone_do_responsavel: &'a str,
-    telefone: &'a str,
-    usar_o_e_mail_do_responsavel: &'a str,
-    e_mail: &'a str,
+struct FiscalInfo {
+    usar_o_nome_do_responsavel: String,
+    nome_completo: String,
+    nr_utente: String,
+    no_de_contribuinte: String,
+    morada: String,
+    codigo_postal: Postcode,
+    user_o_telefone_do_responsavel: String,
+    telefone: String,
+    usar_o_e_mail_do_responsavel: String,
+    e_mail: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-struct Postcode<'a> {
-    codigo_postal: &'a str,
-    localidade: &'a str,
+struct Postcode {
+    codigo_postal: String,
+    localidade: String,
 }
 
-impl<'a> Request<'a> {
-    pub fn new(params: &'a Params) -> Self {
+impl Request {
+    pub fn new(params: &Params) -> Self {
         Self {
             submitted: Submission::new(params),
             details: Details::new(),
-            op: "Enviar",
+            op: "Enviar".to_string(),
         }
     }
 }
 
-impl<'a> Submission<'a> {
-    fn new(params: &'a Params) -> Self {
+impl Submission {
+    fn new(params: &Params) -> Self {
         Self {
-            instalacoes: &params.pitch,
-            utente: &params.user_type,
+            instalacoes: params.pitch.to_owned(),
+            utente: params.user_type.to_owned(),
             dados_da_reserva: Booking::new(params),
             responsavel_pela_reserva: User::new(params),
             dados_para_faturacao: FiscalInfo::new(params),
@@ -113,13 +113,13 @@ impl<'a> Submission<'a> {
     }
 }
 
-impl<'a> Booking<'a> {
-    fn new(params: &'a Params) -> Self {
+impl Booking {
+    fn new(params: &Params) -> Self {
         Self {
-            modalidade: "Futsal",
-            numero_de_participantes: "1P",
-            continuidade: "unica",
-            observacoes: "",
+            modalidade: "Futsal".to_string(),
+            numero_de_participantes: "1P".to_string(),
+            continuidade: "unica".to_string(),
+            observacoes: "".to_string(),
             data_da_reserva: Day::new(
                 params.day,
                 params.month,
@@ -130,8 +130,8 @@ impl<'a> Booking<'a> {
     }
 }
 
-impl<'a> User<'a> {
-    fn new(params: &'a Params) -> Self {
+impl User {
+    fn new(params: &Params) -> Self {
         let bday = Day::new(
             params.bday_day,
             params.bday_month,
@@ -139,38 +139,38 @@ impl<'a> User<'a> {
             );
 
         Self {
-            nome_responsavel: &params.username,
-            e_mail_responsavel: &params.email,
-            telefone_responsavel: &params.phone,
+            nome_responsavel: params.username.to_owned(),
+            e_mail_responsavel: params.email.to_owned(),
+            telefone_responsavel: params.phone.to_owned(),
             data_de_nascimento: bday,
         }
     }
 }
 
-impl<'a> FiscalInfo<'a> {
-    fn new(params: &'a Params) -> Self {
+impl FiscalInfo {
+    fn new(params: &Params) -> Self {
         let postcode = Postcode::new(params);
 
         Self {
-            usar_o_nome_do_responsavel: "1",
-            nome_completo: &params.username,
-            nr_utente: "",
-            no_de_contribuinte: &params.fiscal_number,
-            morada: &params.address,
+            usar_o_nome_do_responsavel: "1".to_string(),
+            nome_completo: params.username.to_owned(),
+            nr_utente: "".to_string(),
+            no_de_contribuinte: params.fiscal_number.to_owned(),
+            morada: params.address.to_owned(),
             codigo_postal: postcode,
-            user_o_telefone_do_responsavel: "1",
-            telefone: &params.phone,
-            usar_o_e_mail_do_responsavel: "1",
-            e_mail: &params.email,
+            user_o_telefone_do_responsavel: "1".to_string(),
+            telefone: params.phone.to_owned(),
+            usar_o_e_mail_do_responsavel: "1".to_string(),
+            e_mail: params.email.to_owned(),
         }
     }
 }
 
-impl<'a> Postcode<'a> {
-    fn new(params: &'a Params) -> Self {
+impl Postcode {
+    fn new(params: &Params) -> Self {
         Self {
-            localidade: &params.location,
-            codigo_postal: &params.postcode,
+            localidade: params.location.to_owned(),
+            codigo_postal: params.postcode.to_owned(),
         }
     }
 }
@@ -200,10 +200,10 @@ impl Day {
     }
 }
 
-impl<'a> Details<'a> {
+impl Details {
     fn new() -> Self {
         Self {
-            sid: "",
+            sid: "".to_string(),
             page_num: 1,
             page_count: 1,
             finished: 0
