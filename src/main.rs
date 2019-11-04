@@ -3,6 +3,8 @@ extern crate clap;
 use clap::{App, ArgMatches};
 
 extern crate serde_yaml;
+extern crate serde_qs;
+extern crate ureq;
 
 use std::fs::File;
 use std::io::prelude::*;

@@ -6,7 +6,8 @@ edition = "2018"
 
 [dependencies]
 clap = { git = "https://github.com/clap-rs/clap", branch = "master", features = ["yaml"] }
-ureq = { version = "*" }
+ureq = { git = "https://github.com/dnlserrano/ureq", branch = "master" }
 serde = { version = "*", features = ["derive"] }
 serde_qs = "*"
 serde_yaml = "*"
+scraper = "*"

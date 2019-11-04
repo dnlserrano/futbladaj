@@ -7,6 +7,8 @@ pub struct Request {
     submitted: Submission,
     details: Details,
     op: String,
+    pub form_id: Option<String>,
+    pub form_build_id: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -97,6 +99,8 @@ impl Request {
             submitted: Submission::new(params),
             details: Details::new(),
             op: "Enviar".to_string(),
+            form_id: None,
+            form_build_id: None,
         }
     }
 }
