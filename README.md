@@ -32,7 +32,7 @@ OPTIONS:
     -E, --end-hour <end_hour>              Sets the end hour (0-24) for the booking (e.g., 23)
     -f, --fiscal-number <fiscal_number>    Sets the booker's fiscal number (e.g., 123123123)
     -m, --month <month>                    Sets the month (1-12) for the booking (e.g., 3)
-    -P, --phone <phone>                    Sets the booker's phone number (e.g., +351 91 123 12 12)
+    -P, --phone <phone>                    Sets the booker's phone number (e.g., 911231212)
     -p, --pitch <pitch>                    Sets the pitch for the booking (e.g., pav1) [possible values: ajuda, grandes,
                                            honra, pav1, pav2, pav3, poli]
     -C, --postcode <postcode>              Sets the booker's postcode (e.g., 1234-123)
@@ -58,7 +58,7 @@ end_hour: 22
 username: Jorge Jesus
 email: email@email.com
 fiscal_number: 123 123 123
-phone: 91 123 12 12
+phone: 911231212
 address: Rua do Ouro
 postcode: 1234-123
 ```

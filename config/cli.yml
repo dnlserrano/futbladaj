@@ -73,7 +73,7 @@ args:
     - phone:
         short: P
         long: phone
-        help: Sets the booker's phone number (e.g., +351 91 123 12 12)
+        help: Sets the booker's phone number (e.g., 911231212)
         takes_value: true
     - fiscal_number:
         short: f
