@@ -37,7 +37,10 @@ pub fn run(params: &Params) {
         .set("Content-Type", "application/x-www-form-urlencoded")
         .set("Origin", "https://www.estadio.ulisboa.pt")
         .set("DNT", "1")
+        .set("Connection", "keep-alive")
         .set("Referer", "https://www.estadio.ulisboa.pt/webform/pedido-de-reserva-de-espacos")
+        .set("Cookie", "has_js=1")
+        .set("Upgrade-Insecure-Requests", "1")
         .send_string(&urlencoded);
 
     // analyse response
