@@ -120,7 +120,7 @@ impl Submission {
 impl Booking {
     fn new(params: &Params) -> Self {
         Self {
-            modalidade: "Futsal".to_string(),
+            modalidade: "futsal".to_string(),
             numero_de_participantes: "1P".to_string(),
             continuidade: "unica".to_string(),
             observacoes: "".to_string(),
